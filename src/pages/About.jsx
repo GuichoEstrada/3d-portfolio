@@ -12,7 +12,10 @@ const About = () => {
       </h1>
 
       <div className='mt-5 flex flex-col gap-3 text-slate-500'>
-        <p>Software developer based in Toronto, specializing technical education through hands-on learning and building applications</p>
+        <p>
+          A Toronto-based software developer, focused on technical education through practical, hands-on learning and application development.
+          Whether it's coding applications or designing websites, I'm passionate about leveraging technology to create meaningful experiences.
+        </p>
       </div>
 
       <div className='py-10 flex flex-col'>
@@ -37,7 +40,8 @@ const About = () => {
           <h3 className='subhead-text'>Work Experience</h3>
           <div className='mt-5 flex flex-col gap-3 text-slate-500'>
             <p>
-              Software developer based in Toronto, specializing technical education through hands-on learning and building applications
+              
+Having three years of experience in the digital realm, I excel at transforming concepts into tangible outcomes, whether that involves crafting applications or experimenting with new coding paradigms.
             </p>
           </div>
           <div className='mt-12 flex'>

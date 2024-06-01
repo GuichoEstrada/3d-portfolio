@@ -1,9 +1,7 @@
-import { meta, shopify, starbucks, tesla } from "../assets/images";
+import { fable, sparksoft, wideout } from "../assets/images";
 import {
-    car,
     contact,
     css,
-    estate,
     express,
     git,
     github,
@@ -14,12 +12,9 @@ import {
     motion,
     nextjs,
     nodejs,
-    pricewise,
     react,
-    snapgram,
-    summiz,
     tailwindcss,
-    threads,
+    threejs,
     typescript
 } from "../assets/icons";
 
@@ -88,6 +83,11 @@ export const skills = [
         imageUrl: typescript,
         name: "TypeScript",
         type: "Frontend",
+    },
+    {
+        imageUrl: threejs,
+        name: "Three.js",
+        type: "Frontend",
     }
 ];
 
@@ -95,40 +95,39 @@ export const experiences = [
     {
         title: "Intern",
         company_name: "Fable",
-        icon: starbucks,
-        iconBg: "#accbe1",
+        icon: fable,
+        iconBg: "#FF5A91",
         date: "January 2024 - April 2024",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Led a software development internship project that is dedicated to enhancing accessibility by addressing the direct feedback from Fable's diverse user base.",
+            "We've built a widget that submits Fable requests via URLs or slugs, resulting in informative summary cards within Figma.",
+            "In these cards are feedbacks from users which helps Fable's developers address them."
         ],
     },
     {
         title: "Software Developer",
         company_name: "Sparksoft Solutions, Inc.",
-        icon: tesla,
-        iconBg: "#fbc3bc",
+        icon: sparksoft,
+        iconBg: "#F53643",
         date: "November 2019 - June 2022",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Spearheaded the development of the prototype of Coca-Cola PH and E-TESDA's OFW RISE and iSTAR programs, which offers comprehensive entrepreneurship courses for OFWs and MSMEs.",
+            "Developed interactive learning components, including games, lectures, videos, and modules using HTML/CSS/JS inside a learning management system called Moodle.",
+            "Developed and maintained web applications using JavaScript, React, and Node.js, delivering high-quality software solutions to meet client requirements and project deadlines."
         ],
     },
     {
         title: "Creative Developer",
         company_name: "WideOut Workforces, Inc.",
-        icon: shopify,
-        iconBg: "#b7e4c7",
+        icon: wideout,
+        iconBg: "#014E75",
         date: "April 2019 - November 2019",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Translated client requirements, graphic designs, and specifications into functional advertisements, utilizing core technologies aligned with client preferences.",
+            "Designed and crafted static and dynamic Banner Ads, employing HTML5, CSS3, and JavaScript to enhance user engagement and interactivity.",
+            "Conducted comprehensive cross-browser and multi-resolution testing to ensure optimal functionality and promptly resolved any issues identified.",
+"            Transformed raw client assets into captivating and interactive rich media ad executions, enhancing brand visibility and audience engagement.",
+            "Determined the digital optimization and presentation strategy for images and multimedia content on designated platforms."
         ],
     }
 ];
@@ -153,38 +152,38 @@ export const socialLinks = [
 
 export const projects = [
     {
-        iconUrl: pricewise,
+        iconUrl: threejs,
         theme: 'btn-back-red',
-        name: 'Amazon Price Tracker',
-        description: 'Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.',
-        link: 'https://github.com/adrianhajdin/pricewise',
+        name: 'iStar Program',
+        description: "The iSTAR program uses a Learning Management System that builds on the success of TESDA's long-running Sari-Sari Store Training and Access to Resources (STAR) Program, which aims to train female micro entrepreneurs and provide them with financial resources to help them grow their businesses. It includes interactive learning components, including games, lectures, videos, and modules using HTML/CSS/JS. - Username: cokeaccess-1 | Password: Cokeaccess-1",
+        link: 'https://moodle1.sparksoft-demo.com/moodle/',
     },
     {
-        iconUrl: threads,
+        iconUrl: threejs,
         theme: 'btn-back-green',
-        name: 'Full Stack Threads Clone',
-        description: 'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-        link: 'https://github.com/adrianhajdin/threads',
+        name: 'OFW Rise',
+        description: 'The OFW-RISE or Overseas Filipino Workers Re-Integration through Skills & Entrepreneurship Program provides returning OFWs with an online course that they can attend through the TESDA Online Program (TOP), allowing them to translate their business ideas into business plans. It includes interactive learning components, including games, lectures, videos, and modules using HTML/CSS/JS and is also run through a Learning Management System. - Username: cokeaccess-1 | Password: Cokeaccess-1 ',
+        link: 'https://moodle1.sparksoft-demo.com/moodle/',
     },
     {
-        iconUrl: car,
+        iconUrl: threejs,
         theme: 'btn-back-blue',
-        name: 'Car Finding App',
-        description: 'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
-        link: 'https://github.com/adrianhajdin/project_next13_car_showcase',
+        name: 'Fable OAuth Integrated Figma Widget',
+        description: 'As part of a team during my internship, I led the building of a widget that allows users to submit Fable requests via URLs or slugs, generating informative summary cards with user feedback within Figma. This feedback mechanism enables users facing accessibility issues to guide developers in addressing their specific challenges, ensuring accessibility remains a key consideration.',
+        link: 'https://prezi.com/p/bicfzliuuqqn/?present=1',
     },
     {
-        iconUrl: snapgram,
+        iconUrl: threejs,
         theme: 'btn-back-pink',
-        name: 'Full Stack Instagram Clone',
-        description: 'Built a complete clone of Instagram, allowing users to share photos and connect with friends in a familiar social media environment.',
-        link: 'https://github.com/adrianhajdin/social_media_app',
+        name: 'CRWN Clothing',
+        description: 'An clothing e-commerce website built with React, GraphQL, and Firebase. Also utilizes Stripe as its payment system.',
+        link: 'https://crwn-clothing-ruddy-ten.vercel.app/',
     },
     {
-        iconUrl: estate,
+        iconUrl: threejs,
         theme: 'btn-back-black',
-        name: 'Real-Estate Application',
-        description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
-        link: 'https://github.com/adrianhajdin/projects_realestate',
+        name: 'Portfolio',
+        description: 'My own personal portfolio built with Nextjs, Tailwind CSS and Framer-motion. (Mobile-responsive)',
+        link: 'https://portfolio-kappa-seven-58.vercel.app/projects',
     }
 ];

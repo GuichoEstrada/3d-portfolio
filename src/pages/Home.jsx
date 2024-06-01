@@ -1,24 +1,25 @@
 import { useState, Suspense, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
-import Island from '../models/Island';
-import Sky from '../models/Sky';
-import Bird from '../models/Bird';
-import Plane from '../models/Plane';
+import SpaceStation from '../models/SpaceStation';
+import Stars from '../models/Stars';
+import SpaceShip from '../models/SpaceShip';
+import Jane from '../models/Jane';
 import HomeInfo from '../components/HomeInfo';
 
-import sakura from '../assets/sakura.mp3';
+import ghost from '../assets/fsm-team-ghost.mp3';
 import { soundoff, soundon } from '../assets/icons';
 
 const Home = () => {
 
-  const audioRef = useRef(new Audio(sakura));
+  const audioRef = useRef(new Audio(ghost));
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
 
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+  const [ currentAnimation, setCurrentAnimation ] = useState('wait')
 
   useEffect(() => {
     if(isPlayingMusic) {
@@ -29,36 +30,49 @@ const Home = () => {
     }
   })
 
-  const adjustIslandForScreenSize = () => {
+  const adjustSpaceStationForScreenSize = () => {
     let screenScale = null;
-    let screenPosition = [0, -6.5, -43];
+    let screenPosition = [0, -1.5, -43];
     let rotation = [0.1, 4.7, 0];
 
     if(window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
+      screenScale = [10, 10, 10];
     } else {
-      screenScale = [1, 1, 1];
+      screenScale = [11, 11, 11];
     }
 
     return [screenScale, screenPosition, rotation]
   }
 
-  const adjustPlaneForScreenSize = () => {
+  const adjustJaneForScreenSize = () => {
     let screenScale, screenPosition;
 
     if(window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0]
+      screenScale = [0.7, 0.7, 0.7];
+      screenPosition = [0, -3.5, -0.5]
     } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4]
+      screenScale = [0.8, 0.8, 0.8];
+      screenPosition = [0, -3.5, -0.5]
     }
 
     return [screenScale, screenPosition]
   }
 
-  const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
-  const [planeScale, planePosition] = adjustPlaneForScreenSize();
+  useEffect(() => {
+    // Call changeAnimation whenever isRotating changes
+    changeAnimation();
+  }, [isRotating]); // Add isRotating as dependency
+
+  const changeAnimation = () => {
+    if(isRotating) {
+      setCurrentAnimation('hero_janefoster01@dash')
+    } else {
+      setCurrentAnimation('wait')
+    }
+  }
+
+  const [spaceStationScale, spaceStationPosition, spaceStationRotation] = adjustSpaceStationForScreenSize();
+  const [janeScale, janePosition] = adjustJaneForScreenSize();
 
   return (
     <section className='w-full h-screen relative'>
@@ -71,30 +85,31 @@ const Home = () => {
       >
         {/* used to render the loading screen */}
         <Suspense fallback={<Loader />}>
-          <directionalLight position={[1,1,1]} intensity={[2]}/>
+          <directionalLight position={[1,1,1]} intensity={[20]}/>
           <ambientLight intensity={0.5}/>
           <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1}/>
 
-          <Bird />
+          <SpaceShip />
 
-          <Sky 
+          <Stars
             isRotating = {isRotating}
           />
 
-          <Island 
-            position = {islandPosition}
-            scale = {islandScale}
-            rotation = {islandRotation}
+          <SpaceStation
+            position = {spaceStationPosition}
+            scale = {spaceStationScale}
+            rotation = {spaceStationRotation}
             isRotating = {isRotating}
             setIsRotating = {setIsRotating}
             setCurrentStage = {setCurrentStage}
           />
 
-          <Plane 
+          <Jane
+            currentAnimation={currentAnimation}
             isRotating = {isRotating}
-            position = {planePosition}
-            scale = {planeScale}
-            rotation = {[0,20,0]}
+            position = {janePosition}
+            scale = {janeScale}
+            rotation = {[-0.3,1.5,0]}
           />
 
         </Suspense>
