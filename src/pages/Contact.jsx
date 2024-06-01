@@ -1,0 +1,145 @@
+import {useState, useRef, Suspense} from 'react'
+import emailjs from '@emailjs/browser';
+import { Canvas } from '@react-three/fiber';
+import Alert from '../components/Alert';
+
+import Jane from '../models/Jane';
+import Loader from '../components/Loader';
+import useAlert from '../hooks/useAlert';
+
+const Contact = () => {
+  const formRef = useRef(null);
+  const [ form, setForm ] = useState({name: '', email: '', message:''});
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ currentAnimation, setCurrentAnimation ] = useState('hero_janefoster01@idle')
+
+  const { alert, showAlert, hideAlert } = useAlert();
+
+  const handleChange = (e) => {
+    setForm({...form, [e.target.name]: e.target.value})
+  };
+  const handleFocus = () => setCurrentAnimation('hero_janefoster01@dash');
+  const handleBlur = () => setCurrentAnimation('hero_janefoster01@idle');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setCurrentAnimation('succ_cam');
+
+    emailjs.send(
+      import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+      {
+        from_name: form.name,
+        to_name: "Luis",
+        from_email: form.email,
+        to_email: "lcrestrada.dev@gmail.com",
+        message: form.message
+      },
+      import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+    ).then(() => {
+      setIsLoading(false);
+      showAlert({show:true, text:"Message sent successfully", type:'success'})
+      setTimeout(() => {
+        setCurrentAnimation('hero_janefoster01@idle');
+        setForm({name: '', email: '', message:''});
+        hideAlert();
+      }, [3000]);
+    }).catch((error) => {
+      setIsLoading(false);
+      setCurrentAnimation('hero_janefoster01@idle')
+      showAlert({show:true, text:"An error occurred.", type:'danger'})
+    })
+  };
+
+  return (
+    <section className='relative flex lg:flex-row flex-col max-container'>
+      {alert.show && <Alert {...alert} />}
+      <div className='flex-1 min-w-[50%] flex flex-col'>
+
+        <h1 className='head-text'>Get in Touch!</h1>
+
+        <form 
+          className='w-full flex flex-col gap-7 mt-14'
+          onSubmit={handleSubmit}
+        >
+
+          <label className='text-black-500 font-semi-bold'>
+            Name
+            <input 
+              className='input'
+              type='text'
+              name='name'
+              placeholder='John'
+              required
+              value={form.name}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </label>
+          <label className='text-black-500 font-semi-bold'>
+            Email
+            <input 
+              className='input'
+              type='email'
+              name='email'
+              placeholder='john@gmail.com'
+              required
+              value={form.email}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </label>
+          <label className='text-black-500 font-semi-bold'>
+            Message
+            <textarea
+              className='textarea'
+              rows = {4}
+              name='message'
+              placeholder='How can I help?'
+              required
+              value={form.message}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </label>
+          <button
+            type='submit'
+            className='btn'
+            disabled={isLoading}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          >
+          {isLoading ? 'Sending...' : 'Send Message'}
+          </button>
+        </form>
+      </div>
+      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'>
+        <Canvas
+          camera={{
+            position:[0,0,5],
+            fov: 75,
+            near: 0.1,
+            far: 1000
+          }}
+        >
+          <directionalLight intensity={2.5} position={[0, 0, 1]} />
+          <ambientLight intensity={0.5} />
+          <Suspense fallback={<Loader />}>
+            <Jane 
+              currentAnimation={currentAnimation}
+              position={[1.5, -4, -5.5]}
+              rotation={[12.8, -0.25, 0]}
+              scale={[3.3,3.3,3.3]}
+            />
+          </Suspense>
+        </Canvas>
+      </div>
+    </section>
+  )
+}
+
+export default Contact
